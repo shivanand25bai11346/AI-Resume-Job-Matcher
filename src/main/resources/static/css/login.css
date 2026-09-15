@@ -1,0 +1,445 @@
+/* ==========================================================================
+   JobMatch AI — Premium Sign-In Template
+   Faithfully inspired by the uploaded warm editorial reference template
+   ========================================================================== */
+
+:root {
+  /* Warm Mauve/Caramel Ambient Background Palette */
+  --ambient-bg-center: #b4857d;
+  --ambient-bg-edge: #8b5a52;
+  
+  /* Card Tokens */
+  --card-bg: #ffffff;
+  --card-radius: 34px;
+  --card-shadow: 0 35px 90px -15px rgba(60, 20, 20, 0.35), 0 0 1px rgba(0, 0, 0, 0.1);
+
+  /* Primary Accent: Dusty Rose / Plum */
+  --accent-plum: #8d5d67;
+  --accent-plum-hover: #7b4e57;
+  --accent-plum-gradient: linear-gradient(180deg, #96636e 0%, #82505b 100%);
+  --accent-plum-shadow: 0 12px 28px -6px rgba(141, 93, 103, 0.45);
+
+  /* Inputs & Grays */
+  --input-bg: #f8fafc;
+  --input-border: #f1f5f9;
+  --input-focus-border: #8d5d67;
+  --text-dark: #1e1e24;
+  --text-muted: #71717a;
+  --text-subtle: #94a3b8;
+
+  /* Fonts */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-heading: 'Outfit', var(--font-sans);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--ambient-bg-edge);
+  background-image: radial-gradient(circle at 50% 45%, var(--ambient-bg-center) 0%, var(--ambient-bg-edge) 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  color: var(--text-dark);
+}
+
+.login-page-wrapper {
+  width: 100%;
+  max-width: 980px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* -------------------------------------------------------------
+   Main Auth Card
+   ------------------------------------------------------------- */
+.auth-card {
+  background-color: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1.05fr 0.95fr;
+  padding: 16px;
+  gap: 16px;
+  position: relative;
+  overflow: hidden;
+  align-items: stretch;
+}
+
+/* -------------------------------------------------------------
+   Left Column: Form Side
+   ------------------------------------------------------------- */
+.auth-form-column {
+  padding: 48px 44px 38px 44px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.auth-brand-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.auth-brand-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  padding: 6px 16px;
+  border-radius: 9999px;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  color: #1e293b;
+}
+
+.auth-brand-badge strong {
+  background: linear-gradient(135deg, #6366f1, #a855f7);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.auth-header {
+  text-align: center;
+  margin-bottom: 28px;
+}
+
+.auth-title {
+  font-family: var(--font-heading);
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--text-dark);
+}
+
+.auth-subtitle {
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+/* Form Controls */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+}
+
+.input-field-group {
+  margin-bottom: 14px;
+  position: relative;
+}
+
+.pill-input {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1.5px solid var(--input-border);
+  border-radius: 12px;
+  padding: 14px 18px;
+  font-size: 14px;
+  font-family: var(--font-sans);
+  color: var(--text-dark);
+  transition: all 0.2s ease;
+}
+
+.pill-input::placeholder {
+  color: #a1a1aa;
+}
+
+.pill-input:focus {
+  outline: none;
+  background-color: #ffffff;
+  border-color: var(--input-focus-border);
+  box-shadow: 0 0 0 4px rgba(141, 93, 103, 0.12);
+}
+
+/* Password Toggle Eye Icon */
+.password-group {
+  display: flex;
+  align-items: center;
+}
+
+.password-toggle-btn {
+  position: absolute;
+  right: 14px;
+  background: transparent;
+  border: none;
+  color: #a1a1aa;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  transition: color 0.2s ease;
+}
+
+.password-toggle-btn:hover {
+  color: var(--accent-plum);
+}
+
+/* Recovery Password Link */
+.recovery-row {
+  text-align: right;
+  margin-top: 2px;
+  margin-bottom: 24px;
+}
+
+.recovery-link {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.recovery-link:hover {
+  color: var(--accent-plum);
+}
+
+/* Sign In Button */
+.btn-sign-in {
+  background: var(--accent-plum);
+  background-image: var(--accent-plum-gradient);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  padding: 15px;
+  font-family: var(--font-sans);
+  font-size: 14.5px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--accent-plum-shadow);
+  transition: transform 0.15s ease, box-shadow 0.2s ease, background-color 0.2s ease;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-sign-in:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 16px 32px -6px rgba(141, 93, 103, 0.55);
+}
+
+.btn-sign-in:active {
+  transform: translateY(0);
+}
+
+/* Divider: Or continue with */
+.divider-row {
+  display: flex;
+  align-items: center;
+  margin: 28px 0 20px 0;
+  text-align: center;
+}
+
+.divider-row::before,
+.divider-row::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background-color: #f1f5f9;
+}
+
+.divider-text {
+  font-size: 11.5px;
+  color: #94a3b8;
+  font-weight: 500;
+  padding: 0 14px;
+  text-transform: capitalize;
+}
+
+/* Social Buttons Row */
+.social-login-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.social-btn {
+  width: 58px;
+  height: 46px;
+  border-radius: 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.social-btn:hover {
+  transform: translateY(-2px);
+  border-color: #cbd5e1;
+  background-color: #ffffff;
+}
+
+/* Elevated Apple Button (as featured in screenshot) */
+.social-btn.elevated {
+  background-color: #ffffff;
+  border-color: transparent;
+  box-shadow: 0 8px 20px -4px rgba(0, 0, 0, 0.12), 0 2px 6px -1px rgba(0, 0, 0, 0.06);
+}
+
+.social-btn.elevated:hover {
+  box-shadow: 0 12px 24px -4px rgba(0, 0, 0, 0.18);
+}
+
+/* Back Link */
+.back-link-row {
+  text-align: center;
+  margin-top: 6px;
+}
+
+.back-home-link {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #71717a;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.back-home-link:hover {
+  color: var(--accent-plum);
+}
+
+/* -------------------------------------------------------------
+   Right Column: Scenic Landscape Art & Carousel
+   ------------------------------------------------------------- */
+.auth-visual-column {
+  position: relative;
+  display: flex;
+}
+
+.scenic-art-card {
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  border-radius: 24px;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 32px 28px;
+}
+
+.scenic-bg-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  z-index: 1;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.scenic-art-card:hover .scenic-bg-img {
+  transform: scale(1.02);
+}
+
+.scenic-overlay-gradient {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 50%;
+  background: linear-gradient(to top, rgba(30, 20, 35, 0.6) 0%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Floating Caption & Carousel Buttons */
+.scenic-caption-container {
+  position: relative;
+  z-index: 5;
+  color: #ffffff;
+}
+
+.scenic-quote {
+  font-family: var(--font-heading);
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: #ffffff;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  margin-bottom: 22px;
+  min-height: 48px;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.carousel-nav-arrows {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.carousel-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(1.08);
+}
+
+/* Utilities */
+.hidden {
+  display: none !important;
+}
+
+/* -------------------------------------------------------------
+   Responsive Breakpoints
+   ------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .auth-card {
+    grid-template-columns: 1fr;
+    max-width: 480px;
+    padding: 12px;
+    border-radius: 28px;
+  }
+
+  .auth-form-column {
+    padding: 36px 24px 28px 24px;
+  }
+
+  .auth-visual-column {
+    display: none; /* Hide visual column on mobile or compact screens */
+  }
+
+  .auth-title {
+    font-size: 28px;
+  }
+}

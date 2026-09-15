@@ -1,0 +1,786 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>JobMatch AI — Intelligent Resume & Job Description Matching Engine</title>
+  <meta name="description" content="AI-powered Resume to Job Description Matcher in Java and Spring Boot with Apache PDFBox, NLP skill extraction, semantic concept analysis, and automated skill gap roadmaps." />
+  
+  <!-- Google Fonts: Inter & Outfit -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Floating Pill Header Bar (Matching Image 2) -->
+  <header class="app-header floating-navbar" id="app-header">
+    <div class="header-inner">
+      <!-- Left: Brand Logo -->
+      <a href="#" class="brand-logo" aria-label="JobMatch AI Home">
+        <div class="brand-logo-symbol">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+        </div>
+        <span class="brand-title">JOBMATCH <span class="brand-accent">AI</span></span>
+      </a>
+
+      <!-- Center: Navigation Menu Items -->
+      <nav class="main-nav" id="main-nav" aria-label="Main Navigation">
+        <ul class="nav-list">
+          <li class="nav-item">
+            <a href="#workspace" class="nav-link">
+              <span>Products</span>
+              <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#how-it-works" class="nav-link">
+              <span>Solutions</span>
+              <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="#presets-section" class="nav-link">
+              <span>Resources</span>
+              <svg class="nav-chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M6 9l6 6 6-6"/></svg>
+            </a>
+          </li>
+          <li class="nav-item">
+            <button type="button" class="nav-link-btn" id="view-history-btn" title="View Recent Matches">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>HISTORY</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+
+      <!-- Right: Login & Prominent Glowing Get Started Button -->
+      <div class="header-right-actions">
+        <a href="login.html" class="btn-login" id="header-login-btn">LOG IN</a>
+        <a href="login.html" class="btn-get-started" id="header-get-started-btn">GET STARTED</a>
+        
+        <!-- Mobile Menu Hamburger Button -->
+        <button type="button" class="mobile-menu-toggle" id="mobile-menu-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-nav-drawer hidden" id="mobile-nav-drawer">
+      <ul class="mobile-nav-list">
+        <li><a href="#hero-section" class="mobile-nav-link" id="mob-link-overview">Overview</a></li>
+        <li><a href="#workspace" class="mobile-nav-link" id="mob-link-workspace">Matcher Workspace</a></li>
+        <li><a href="#presets-section" class="mobile-nav-link" id="mob-link-presets">Quick Presets</a></li>
+        <li><button type="button" class="mobile-nav-link-btn" id="mobile-history-btn">Match History</button></li>
+        <li class="mobile-auth-divider"></li>
+        <li class="mobile-auth-row">
+          <a href="login.html" class="btn-login-mobile" id="mobile-login-btn">LOG IN</a>
+          <a href="login.html" class="btn-get-started-mobile" id="mobile-get-started-btn">GET STARTED</a>
+        </li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- HERO / MAIN SECTION: Pure Jet Black Background with High-End Glassmorphic Cards (Matching Image 2) -->
+  <section class="hero-section" id="hero-section">
+    <div class="hero-container">
+      
+      <!-- Two Side-by-Side Large Cards Composition -->
+      <div class="hero-cards-grid">
+        
+        <!-- CARD 1: Upload Your Resume (Dark Frosted Shield Badge, Interactive Capsule with Arrow, Pill CTA) -->
+        <div class="hero-card card-resume" id="hero-card-resume">
+          <!-- Dark Frosted Shield Ribbon Badge near upper-left (Image 2 style) -->
+          <div class="ribbon-badge-wrapper">
+            <div class="ribbon-badge dark-glass-ribbon">
+              <span class="ribbon-star">★</span>
+              <span class="ribbon-title">TOP ATS TECH</span>
+              <span class="ribbon-year">2025</span>
+            </div>
+          </div>
+
+          <!-- Large visual / interactive content in the center -->
+          <div class="card-visual-area" id="hero-visual-resume">
+            <div class="hero-prompt-container">
+              <div class="ai-prompt-capsule" id="hero-prompt-capsule">
+                <span class="prompt-sparkle">✨</span>
+                <span class="prompt-text" id="hero-typing-prompt">What role or resume would you like to match?</span>
+                <span class="prompt-cursor"></span>
+                <a href="#workspace" class="prompt-action-circle" id="prompt-action-btn" aria-label="Analyze Resume">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                    <polyline points="12 5 19 12 12 19"></polyline>
+                  </svg>
+                </a>
+              </div>
+
+              <!-- Match badge tag row below capsule -->
+              <div class="hero-tag-row" aria-hidden="true">
+                <span class="float-tag tag-pill-ats">ATS Match 98%</span>
+              </div>
+            </div>
+            
+            <div class="card-glow-element"></div>
+          </div>
+
+          <!-- Bottom: Subtitle, Title, Description, Pill Button CTA with arrow -->
+          <div class="card-footer-content">
+            <div class="card-eyebrow">BLUEPRINT AI PARSER</div>
+            <h2 class="card-heading">Upload Your Resume</h2>
+            <p class="card-description">
+              Upload your PDF resume and let our neural engine extract skills, calculate strengths, and verify ATS readiness.
+            </p>
+            <div class="card-cta-wrapper">
+              <a href="#workspace" class="card-cta-pill" id="hero-analyze-cta">
+                <span>Analyze Resume</span>
+                <span class="cta-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- CARD 2: Match a Job (Dark card with 3x2 mosaic of project previews, Pill Button CTA) -->
+        <div class="hero-card card-job" id="hero-card-job">
+          <!-- Upper / Main Area: Mosaic Grid of Job Previews (Image 2) -->
+          <div class="card-visual-area mosaic-visual-area">
+            <div class="job-mosaic-grid" id="job-mosaic-grid">
+              
+              <!-- Tile 1: Stripe -->
+              <div class="mosaic-tile tile-stripe" data-preset-index="0" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-stripe">S</span>
+                  <span class="company-name">Stripe</span>
+                  <span class="match-score score-high">96%</span>
+                </div>
+                <div class="role-name">Staff Backend Engineer</div>
+                <div class="role-skills-preview">
+                  <span>Java</span><span>Spring</span><span>Kafka</span>
+                </div>
+              </div>
+
+              <!-- Tile 2: Anthropic -->
+              <div class="mosaic-tile tile-anthropic" data-preset-index="1" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-anthropic">A</span>
+                  <span class="company-name">Anthropic</span>
+                  <span class="match-score score-high">92%</span>
+                </div>
+                <div class="role-name">AI Systems Architect</div>
+                <div class="role-skills-preview">
+                  <span>Distributed</span><span>NLP</span>
+                </div>
+              </div>
+
+              <!-- Tile 3: Netflix -->
+              <div class="mosaic-tile tile-netflix" data-preset-index="2" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-netflix">N</span>
+                  <span class="company-name">Netflix</span>
+                  <span class="match-score score-mid">88%</span>
+                </div>
+                <div class="role-name">Cloud Infrastructure Lead</div>
+                <div class="role-skills-preview">
+                  <span>AWS</span><span>Docker</span>
+                </div>
+              </div>
+
+              <!-- Tile 4: Airbnb -->
+              <div class="mosaic-tile tile-airbnb" data-preset-index="3" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-airbnb">A</span>
+                  <span class="company-name">Airbnb</span>
+                  <span class="match-score score-high">94%</span>
+                </div>
+                <div class="role-name">Principal Full Stack Dev</div>
+                <div class="role-skills-preview">
+                  <span>Java</span><span>React</span><span>SQL</span>
+                </div>
+              </div>
+
+              <!-- Tile 5: Datadog (98% in Image 2) -->
+              <div class="mosaic-tile tile-datadog" data-preset-index="0" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-datadog">D</span>
+                  <span class="company-name">Datadog</span>
+                  <span class="match-score score-high">98%</span>
+                </div>
+                <div class="role-name">Platform Observability</div>
+                <div class="role-skills-preview">
+                  <span>CI/CD</span><span>REST</span>
+                </div>
+              </div>
+
+              <!-- Tile 6: Spotify -->
+              <div class="mosaic-tile tile-spotify" data-preset-index="1" title="Click to load preset into workspace">
+                <div class="tile-header">
+                  <span class="company-badge badge-spotify">S</span>
+                  <span class="company-name">Spotify</span>
+                  <span class="match-score score-high">95%</span>
+                </div>
+                <div class="role-name">Core Services Engineer</div>
+                <div class="role-skills-preview">
+                  <span>Microservices</span><span>Docker</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Subtle Dark Gradient Overlay toward the bottom -->
+            <div class="mosaic-bottom-gradient"></div>
+          </div>
+
+          <!-- Bottom: Subtitle, Title, Description, Pill Button CTA with arrow -->
+          <div class="card-footer-content">
+            <div class="card-eyebrow">PRECISION ROLE ALIGNMENT</div>
+            <h2 class="card-heading">Match a Job</h2>
+            <p class="card-description">
+              Compare your resume with a job description and discover your match score, semantic alignments, and missing skills.
+            </p>
+            <div class="card-cta-wrapper">
+              <a href="#workspace" class="card-cta-pill" id="hero-match-cta">
+                <span>Find Your Match</span>
+                <span class="cta-arrow">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive Engine Workspace -->
+  <main class="container main-content" id="workspace">
+
+    <!-- Workspace Header & Status -->
+    <div class="workspace-intro-header" id="how-it-works">
+      <div class="workspace-title-group">
+        <span class="workspace-badge">INTERACTIVE MATCHING ENGINE</span>
+        <h2 class="workspace-heading">Candidate &amp; Job Analysis Console</h2>
+        <p class="workspace-subheading">Upload a candidate resume or select a preset to analyze semantic relevance, TF-IDF cosine similarity, and skill gaps.</p>
+      </div>
+      <div class="engine-badge" id="engine-status">
+        <span class="pulse-dot"></span>
+        <span>Spring Boot 3.4 • NLP • PDFBox Active</span>
+      </div>
+    </div>
+
+    <!-- Quick Test Presets Bar -->
+    <section class="presets-section" id="presets-section">
+      <div class="presets-header">
+        <span class="preset-label">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          Quick Test Presets:
+        </span>
+        <div class="preset-buttons" id="preset-container">
+          <!-- Rendered dynamically by JS -->
+          <button class="preset-btn loading" disabled>Loading presets...</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Workspace: Dual Input Grid -->
+    <section class="workspace-grid" id="features">
+      <!-- Left Column: Resume Input -->
+      <div class="card glass-card input-card" id="resume-input-container">
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="badge-number">1</div>
+            <div>
+              <h3 class="card-title">Candidate Resume</h3>
+              <p class="card-desc">Upload a PDF resume or paste raw text</p>
+            </div>
+          </div>
+          <div class="tab-pill-group">
+            <button class="tab-pill active" id="tab-pdf" type="button">Upload PDF</button>
+            <button class="tab-pill" id="tab-text" type="button">Paste Text</button>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- PDF Upload Zone -->
+          <div class="tab-pane active" id="pane-pdf">
+            <div class="drop-zone" id="drop-zone">
+              <input type="file" id="pdf-file-input" accept=".pdf" class="file-input-hidden" />
+              <div class="drop-zone-content" id="drop-zone-content">
+                <div class="upload-icon-circle">
+                  <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                    <polyline points="17 8 12 3 7 8"></polyline>
+                    <line x1="12" y1="3" x2="12" y2="15"></line>
+                  </svg>
+                </div>
+                <h4 class="upload-prompt">Drop your PDF resume here</h4>
+                <p class="upload-hint">or <span class="browse-link">browse from computer</span> (Max 10MB)</p>
+                <div class="pdfbox-chip">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+                  Parsed via Apache PDFBox
+                </div>
+              </div>
+
+              <!-- Selected File Preview Card -->
+              <div class="file-selected-card hidden" id="file-preview-card">
+                <div class="file-icon-badge">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                    <polyline points="14 2 14 8 20 8"></polyline>
+                  </svg>
+                </div>
+                <div class="file-info-text">
+                  <span class="file-name" id="selected-file-name">resume.pdf</span>
+                  <span class="file-size" id="selected-file-size">0 KB</span>
+                </div>
+                <button type="button" class="btn-remove-file" id="remove-file-btn" title="Remove file">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                  </svg>
+                </button>
+              </div>
+            </div>
+
+            <div class="extracted-preview-wrapper hidden" id="extracted-preview-wrapper">
+              <div class="preview-header">
+                <span>Extracted Resume Content Preview</span>
+                <span class="preview-meta" id="extracted-word-count">0 words</span>
+              </div>
+              <div class="extracted-preview-box" id="extracted-preview-text"></div>
+            </div>
+          </div>
+
+          <!-- Raw Text Paste Tab -->
+          <div class="tab-pane" id="pane-text">
+            <div class="input-meta-row">
+              <div class="field-group flex-1">
+                <label for="candidate-name-input" class="field-label">Candidate Name (Optional)</label>
+                <input type="text" id="candidate-name-input" class="text-input" placeholder="e.g. Vishnu Sharma" />
+              </div>
+            </div>
+            <div class="textarea-wrapper">
+              <textarea id="resume-text-input" class="code-textarea" rows="12" placeholder="Paste resume plain text here, including education, technical skills, projects, and work experience..."></textarea>
+              <div class="textarea-footer">
+                <span id="resume-char-count">0 characters</span>
+                <button type="button" class="btn-link" id="clear-resume-btn">Clear</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Column: Job Description Input -->
+      <div class="card glass-card input-card" id="job-input-container">
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="badge-number">2</div>
+            <div>
+              <h3 class="card-title">Job Description</h3>
+              <p class="card-desc">Target position &amp; technical specifications</p>
+            </div>
+          </div>
+          <div class="input-meta-pill" id="job-skills-counter">
+            <span>Ready for Analysis</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="input-meta-row">
+            <div class="field-group flex-1">
+              <label for="job-title-input" class="field-label">Job Title</label>
+              <input type="text" id="job-title-input" class="text-input" placeholder="e.g. Senior Java Backend Developer" />
+            </div>
+            <div class="field-group flex-1">
+              <label for="company-input" class="field-label">Company / Team</label>
+              <input type="text" id="company-input" class="text-input" placeholder="e.g. Acme Cloud Corp" />
+            </div>
+          </div>
+
+          <div class="textarea-wrapper">
+            <textarea id="job-desc-input" class="code-textarea" rows="12" placeholder="Paste full Job Description here...
+
+Example:
+We are looking for a Java Developer with experience in:
+- Java, Spring Boot, MySQL, REST API, Git, Docker, and DSA.
+Must have strong fundamentals in Microservices and AWS cloud deployment."></textarea>
+            <div class="textarea-footer">
+              <span id="job-char-count">0 characters</span>
+              <button type="button" class="btn-link" id="clear-job-btn">Clear</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Action Bar -->
+    <section class="action-bar">
+      <button type="button" class="btn-primary" id="analyze-btn">
+        <span class="btn-content">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+          </svg>
+          <span>Run AI Matching &amp; Gap Analysis</span>
+        </span>
+        <span class="spinner hidden" id="analyze-spinner"></span>
+      </button>
+      <button type="button" class="btn-secondary" id="reset-all-btn">Reset All</button>
+    </section>
+
+    <!-- Results Section (Initially Hidden, Revealed on Match) -->
+    <section class="results-section hidden" id="results-section">
+      <!-- Section Divider -->
+      <div class="results-header">
+        <div class="results-title-group">
+          <h2 class="results-heading">Analysis &amp; Matching Report</h2>
+          <p class="results-subheading" id="results-target-info">Matching candidate profile against requirements</p>
+        </div>
+        <div class="results-actions">
+          <button type="button" class="btn-ghost" id="print-report-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            Print / Save Report
+          </button>
+        </div>
+      </div>
+
+      <!-- Hero Summary Grid -->
+      <div class="hero-summary-grid">
+        <!-- Match Score Gauge Card -->
+        <div class="card glass-card score-hero-card">
+          <div class="gauge-container">
+            <svg class="score-gauge-svg" viewBox="0 0 160 160">
+              <circle class="gauge-track" cx="80" cy="80" r="68"></circle>
+              <circle class="gauge-fill" id="gauge-fill-circle" cx="80" cy="80" r="68"></circle>
+            </svg>
+            <div class="gauge-value-overlay">
+              <span class="score-percent" id="score-percent-val">0%</span>
+              <span class="score-label">MATCH SCORE</span>
+            </div>
+          </div>
+          <div class="verdict-wrapper">
+            <div class="verdict-badge" id="verdict-badge">Strong Match</div>
+            <p class="verdict-desc" id="verdict-desc">Analysis calculated based on skill coverage, semantic relations, and contextual similarity.</p>
+          </div>
+        </div>
+
+        <!-- Metric Breakdown Cards -->
+        <div class="metrics-grid">
+          <!-- Metric 1: Skill Coverage -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Direct &amp; Semantic Skill Match</span>
+              <span class="metric-val" id="metric-skill-val">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill fill-indigo" id="bar-skill" style="width: 0%"></div>
+            </div>
+            <p class="metric-subtext" id="metric-skill-sub">0 of 0 required skills satisfied</p>
+          </div>
+
+          <!-- Metric 2: TF-IDF Cosine Similarity -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">TF-IDF Vector Cosine Similarity</span>
+              <span class="metric-val" id="metric-tfidf-val">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill fill-emerald" id="bar-tfidf" style="width: 0%"></div>
+            </div>
+            <p class="metric-subtext">Holistic vocabulary &amp; document context overlap</p>
+          </div>
+
+          <!-- Metric 3: Semantic Relationship Index -->
+          <div class="metric-card">
+            <div class="metric-header">
+              <span class="metric-title">Semantic Concept Relevance</span>
+              <span class="metric-val" id="metric-semantic-val">0%</span>
+            </div>
+            <div class="progress-bar-bg">
+              <div class="progress-bar-fill fill-amber" id="bar-semantic" style="width: 0%"></div>
+            </div>
+            <p class="metric-subtext">Equivalency mapping (e.g., Spring Boot ↔ Spring Framework)</p>
+          </div>
+
+          <!-- Quick Stats Pills -->
+          <div class="quick-stats-row">
+            <div class="quick-stat-chip chip-success">
+              <span class="stat-number" id="count-matched">0</span>
+              <span class="stat-label">Matched Skills</span>
+            </div>
+            <div class="quick-stat-chip chip-danger">
+              <span class="stat-number" id="count-missing">0</span>
+              <span class="stat-label">Missing Skills</span>
+            </div>
+            <div class="quick-stat-chip chip-info">
+              <span class="stat-number" id="count-extra">0</span>
+              <span class="stat-label">Extra Strengths</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skills Matrix: Matched vs Skill Gaps -->
+      <div class="skills-matrix-grid">
+        <!-- Matched Skills Column -->
+        <div class="card glass-card skills-column">
+          <div class="column-header border-success">
+            <div class="header-icon icon-success">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </div>
+            <div>
+              <h3 class="column-title">Matched Skills</h3>
+              <p class="column-desc">Skills present in resume that fulfill job requirements</p>
+            </div>
+          </div>
+          <div class="skill-tags-flow" id="matched-skills-container">
+            <!-- Dynamic skill chips -->
+          </div>
+        </div>
+
+        <!-- Missing Skills (Skill Gaps) Column -->
+        <div class="card glass-card skills-column">
+          <div class="column-header border-danger">
+            <div class="header-icon icon-danger">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </div>
+            <div>
+              <h3 class="column-title">Skill Gaps (Missing Requirements)</h3>
+              <p class="column-desc">Required skills not yet demonstrated in candidate's resume</p>
+            </div>
+          </div>
+          <div class="skill-tags-flow" id="missing-skills-container">
+            <!-- Dynamic missing chips -->
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Candidate Strengths -->
+      <div class="card glass-card extra-skills-card" id="extra-skills-card">
+        <div class="column-header border-indigo">
+          <div class="header-icon icon-indigo">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+            </svg>
+          </div>
+          <div>
+            <h3 class="column-title">Additional Applicant Strengths</h3>
+            <p class="column-desc">Complementary technical skills candidate possesses beyond the stated job spec</p>
+          </div>
+        </div>
+        <div class="skill-tags-flow" id="extra-skills-container"></div>
+      </div>
+
+      <!-- Skill Gap Roadmap & Learning Path -->
+      <div class="card glass-card roadmap-card" id="roadmap-card">
+        <div class="card-header">
+          <div class="card-title-group">
+            <div class="header-icon icon-roadmap">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path>
+                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path>
+              </svg>
+            </div>
+            <div>
+              <h3 class="card-title">Skill Gap Learning Roadmap</h3>
+              <p class="card-desc">Prioritized, prerequisite-ordered learning path to bridge technical gaps</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="timeline-container" id="roadmap-timeline">
+            <!-- Roadmap items rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </main>
+
+  <!-- History Drawer Modal -->
+  <div class="drawer-overlay hidden" id="history-drawer-overlay">
+    <div class="drawer-panel" id="history-drawer">
+      <div class="drawer-header">
+        <h3 class="drawer-title">Recent Match History</h3>
+        <button type="button" class="btn-icon" id="close-drawer-btn" aria-label="Close history drawer">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="drawer-body" id="history-list-container">
+        <div class="history-empty">Loading history...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Interactive Auth Modal (Using the Editorial Split-Card Template for JOBMATCH AI) -->
+  <div class="modal-overlay hidden" id="auth-modal" role="dialog" aria-modal="true">
+    <div class="template-auth-card">
+      <button type="button" class="template-close-btn" id="close-auth-btn" aria-label="Close dialog">✕</button>
+
+      <!-- Left Side: Form Controls -->
+      <div class="template-form-column">
+        <div class="template-brand-row">
+          <div class="template-brand-badge">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.3">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="16" y1="13" x2="8" y2="13"></line>
+            </svg>
+            <span>JOBMATCH <strong>AI</strong></span>
+          </div>
+        </div>
+
+        <div class="template-auth-header">
+          <h2 class="template-auth-title" id="auth-modal-title">Hello Again!</h2>
+          <p class="template-auth-subtitle" id="auth-modal-subtitle">Let's get started with your 30 days trial</p>
+        </div>
+
+        <form class="template-login-form" id="auth-form" onsubmit="event.preventDefault();">
+          <!-- Email -->
+          <div class="template-input-group">
+            <input 
+              type="email" 
+              id="auth-email" 
+              class="template-pill-input" 
+              placeholder="Email" 
+              required 
+            />
+          </div>
+
+          <!-- Password with Toggle -->
+          <div class="template-input-group template-password-group">
+            <input 
+              type="password" 
+              id="auth-password" 
+              class="template-pill-input" 
+              placeholder="Password" 
+              required 
+            />
+            <button 
+              type="button" 
+              class="template-password-toggle" 
+              id="modal-password-toggle" 
+              aria-label="Toggle password visibility"
+            >
+              <svg class="eye-icon eye-off" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"></path>
+                <line x1="1" y1="1" x2="23" y2="23"></line>
+              </svg>
+              <svg class="eye-icon eye-on hidden" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Recovery Password -->
+          <div class="template-recovery-row">
+            <a href="#" class="template-recovery-link" id="modal-recovery-link">Recovery Password</a>
+          </div>
+
+          <!-- Sign In Button -->
+          <button type="submit" class="template-btn-signin" id="auth-submit-btn">
+            <span>Sign In</span>
+          </button>
+
+          <!-- Divider -->
+          <div class="template-divider-row">
+            <span class="template-divider-text">Or continue with</span>
+          </div>
+
+          <!-- Social Login Buttons -->
+          <div class="template-social-row">
+            <button type="button" class="template-social-btn" id="modal-social-google" title="Sign in with Google">
+              <svg width="20" height="20" viewBox="0 0 24 24">
+                <path fill="#4285F4" d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.665-5.17 3.665-9.17z"/>
+                <path fill="#34A853" d="M12 24c3.24 0 5.95-1.08 7.93-2.91l-3.88-3.05c-1.08.72-2.45 1.16-4.05 1.16-3.12 0-5.77-2.1-6.72-4.93H1.25v3.15C3.26 21.36 7.34 24 12 24z"/>
+                <path fill="#FBBC05" d="M5.28 14.27c-.25-.72-.38-1.49-.38-2.27s.13-1.55.38-2.27V6.58H1.25C.45 8.18 0 9.99 0 12s.45 3.82 1.25 5.42l4.03-3.15z"/>
+                <path fill="#EA4335" d="M12 4.75c1.77 0 3.35.61 4.6 1.8l3.42-3.42C17.95 1.19 15.24 0 12 0 7.34 0 3.26 2.64 1.25 6.58l4.03 3.15c.95-2.83 3.6-4.98 6.72-4.98z"/>
+              </svg>
+            </button>
+            <button type="button" class="template-social-btn elevated" id="modal-social-apple" title="Sign in with Apple">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#000000">
+                <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M15.97 6.37c.61-.75 1.04-1.8 0.92-2.87-.9.04-2 .6-2.65 1.35-.55.63-1.03 1.68-.9 2.71 1 .08 2.02-.44 2.63-1.19z"/>
+              </svg>
+            </button>
+            <button type="button" class="template-social-btn" id="modal-social-facebook" title="Sign in with Facebook">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#1877F2">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Right Side: Scenic Artwork Carousel -->
+      <div class="template-visual-column">
+        <div class="template-scenic-card">
+          <img src="images/login-landscape.jpg" alt="JobMatch AI Nature Art" class="template-scenic-img" />
+          <div class="template-scenic-overlay"></div>
+          <div class="template-caption-box">
+            <p class="template-quote" id="modal-quote-text">Finally, all your work in one place.</p>
+            <div class="template-carousel-arrows">
+              <button type="button" class="template-arrow-btn" id="modal-carousel-prev" aria-label="Previous quote">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+              </button>
+              <button type="button" class="template-arrow-btn" id="modal-carousel-next" aria-label="Next quote">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="container footer-container">
+      <div class="footer-top">
+        <div class="footer-brand">
+          <span class="brand-title">JOBMATCH <span class="brand-accent">AI</span></span>
+          <p class="footer-desc">Production-grade recruitment matching engine powered by Java, Spring Boot 3.4, Apache PDFBox, and OpenNLP.</p>
+        </div>
+        <div class="footer-links">
+          <a href="#hero-section">Overview</a>
+          <a href="#workspace">Workspace</a>
+          <a href="#presets-section">Presets</a>
+          <a href="#roadmap-card">Learning Roadmap</a>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 JobMatch AI. All rights reserved. Designed for recruitment matching and skill gap acceleration.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JavaScript Application -->
+  <script src="js/app.js"></script>
+</body>
+</html>
