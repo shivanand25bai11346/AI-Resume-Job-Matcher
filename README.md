@@ -2,11 +2,11 @@
 
 An AI-powered web application that helps job seekers analyze their resumes and determine how well they match a specific job opportunity.
 
-The application is designed to make the job application process smarter by comparing a candidate's resume with job requirements and highlighting relevant skills, missing skills, and overall job compatibility.
+The application compares a candidate's resume with job requirements and provides useful insights such as matched skills, missing skills, job compatibility, and improvement suggestions.
 
 ## 🌐 Live Demo
 
-🚀 **Try the application:**
+🚀 **Try the application:**  
 https://ai-resume-job-matcher-psi.vercel.app/
 
 ---
@@ -15,15 +15,15 @@ https://ai-resume-job-matcher-psi.vercel.app/
 
 Applying for jobs can be difficult when you don't know whether your resume actually matches the requirements of a particular role.
 
-**AI Resume Job Matcher** helps solve this problem by allowing users to provide their resume and job information and receive an AI-powered analysis.
+**AI Resume Job Matcher** helps solve this problem by allowing users to analyze their resume against a specific job opportunity.
 
 Instead of applying blindly, users can understand:
 
-* 📄 How well their resume matches the job
-* 🎯 Their overall job-match score
-* ✅ Skills and requirements they already satisfy
-* ❌ Skills or requirements they may be missing
-* 💡 Areas where their resume can be improved
+- 📄 How well their resume matches the job
+- 🎯 Their overall job-match score
+- ✅ Skills and requirements they already satisfy
+- ❌ Skills or requirements they may be missing
+- 💡 Areas where their resume can be improved
 
 The goal is to help candidates **apply smarter and improve their chances of getting shortlisted.**
 
@@ -33,27 +33,27 @@ The goal is to help candidates **apply smarter and improve their chances of gett
 
 ### 📄 Resume Analysis
 
-Upload or provide your resume and allow the application to analyze your professional profile.
+Analyze your resume and extract relevant information about your skills, experience, education, and qualifications.
 
 ### 🎯 Job Matching
 
-Compare your resume against a particular job description to determine how closely your profile matches the role.
+Compare your resume against a specific job description to determine how closely your profile matches the role.
 
 ### 📊 Match Score
 
-Get an easy-to-understand score representing your compatibility with the job.
+Get an easy-to-understand score representing your compatibility with the selected job.
 
 ### ✅ Matched Skills
 
-Identify the skills and technologies from your resume that align with the job requirements.
+Identify the skills, technologies, and qualifications from your resume that match the job requirements.
 
 ### ❌ Skill Gap Detection
 
-Find important skills or requirements mentioned in the job description that are missing from your resume.
+Identify important skills or requirements mentioned in the job description that are missing from your resume.
 
 ### 💡 AI-Powered Suggestions
 
-Receive useful suggestions for improving your resume and better aligning it with the target role.
+Get AI-powered suggestions to improve your resume and better align it with the target job.
 
 ### 🖥️ User-Friendly Interface
 
@@ -61,7 +61,7 @@ A clean and simple interface designed to make resume analysis easy for students,
 
 ### ⚡ Web-Based Application
 
-The application is deployed online, allowing users to access it directly from a browser without installing anything.
+Access the application directly through a web browser without installing any software.
 
 ---
 
@@ -109,21 +109,15 @@ The application follows a simple workflow:
 
 ## 🛠️ Tech Stack
 
-The project is built as a modern web application using technologies such as:
-
-* **Frontend:** React / Next.js
-* **Styling:** CSS / Tailwind CSS
-* **AI Integration:** Generative AI / LLM
-* **Deployment:** Vercel
-* **Version Control:** Git & GitHub
-
-> Update this section with the exact technologies used in your implementation.
+- **Frontend:** React / Next.js
+- **Styling:** CSS / Tailwind CSS
+- **AI Integration:** Generative AI / LLM
+- **Deployment:** Vercel
+- **Version Control:** Git & GitHub
 
 ---
 
 ## 📂 Project Structure
-
-A typical project structure looks like:
 
 ```text
 AI-Resume-Job-Matcher/
@@ -150,25 +144,25 @@ AI-Resume-Job-Matcher/
 
 Follow these steps to run the project locally.
 
-### 1. Clone the repository
+### 1. Clone the Repository
 
 ```bash
 git clone <YOUR-GITHUB-REPOSITORY-URL>
 ```
 
-### 2. Navigate to the project
+### 2. Navigate to the Project
 
 ```bash
 cd AI-Resume-Job-Matcher
 ```
 
-### 3. Install dependencies
+### 3. Install Dependencies
 
 ```bash
 npm install
 ```
 
-### 4. Configure environment variables
+### 4. Configure Environment Variables
 
 Create a `.env` or `.env.local` file depending on your project configuration.
 
@@ -178,15 +172,15 @@ Example:
 AI_API_KEY=your_api_key_here
 ```
 
-⚠️ **Never upload API keys or other secrets to GitHub.**
+⚠️ **Never upload API keys or other sensitive information to GitHub.**
 
-### 5. Start the development server
+### 5. Start the Development Server
 
 ```bash
 npm run dev
 ```
 
-### 6. Open in your browser
+### 6. Open in Your Browser
 
 ```text
 http://localhost:3000
@@ -198,23 +192,23 @@ http://localhost:3000
 
 This project can be useful for:
 
-* 👨‍🎓 College students
-* 💼 Freshers
-* 👨‍💻 Software developers
-* 🔍 Job seekers
-* 📄 Resume optimization
-* 🎯 Placement preparation
-* 🏢 Internship applications
+- 👨‍🎓 College students
+- 💼 Freshers
+- 👨‍💻 Software developers
+- 🔍 Job seekers
+- 📄 Resume optimization
+- 🎯 Placement preparation
+- 🏢 Internship applications
 
 ---
 
 ## 💡 Why I Built This
 
-Many students and job seekers apply to a large number of jobs without knowing whether their resume actually matches the requirements.
+Many students and job seekers apply to jobs without knowing whether their resume actually matches the requirements.
 
-This project aims to make that process more transparent.
+This project aims to make the job application process more transparent and efficient.
 
-Rather than simply asking:
+Instead of simply asking:
 
 > **"Is my resume good?"**
 
@@ -222,25 +216,23 @@ the application focuses on a more useful question:
 
 > **"How well does my resume match this specific job?"**
 
-This helps candidates understand their strengths, identify skill gaps, and make more informed application decisions.
+By identifying matched skills, skill gaps, and areas for improvement, users can make more informed decisions and improve their resumes before applying.
 
 ---
 
 ## 🔮 Future Improvements
 
-Some features that can be added in future versions include:
-
-* [ ] ATS compatibility analysis
-* [ ] Resume keyword optimization
-* [ ] Multiple job comparison
-* [ ] Resume improvement recommendations
-* [ ] AI-generated resume suggestions
-* [ ] Cover letter generation
-* [ ] Job recommendation system
-* [ ] Job application tracking
-* [ ] LinkedIn profile analysis
-* [ ] Resume scoring history
-* [ ] Personalized learning recommendations for missing skills
+- [ ] ATS compatibility analysis
+- [ ] Resume keyword optimization
+- [ ] Multiple job comparison
+- [ ] Advanced resume improvement recommendations
+- [ ] AI-generated resume suggestions
+- [ ] Cover letter generation
+- [ ] Job recommendation system
+- [ ] Job application tracking
+- [ ] LinkedIn profile analysis
+- [ ] Resume scoring history
+- [ ] Personalized learning recommendations for missing skills
 
 ---
 
@@ -269,24 +261,23 @@ The application is deployed using **Vercel**.
 
 🚀 https://ai-resume-job-matcher-psi.vercel.app/
 
-Vercel provides automatic deployment whenever changes are pushed to the connected GitHub repository.
+The application can be accessed directly through the deployed URL.
 
 ---
 
 ## 📸 Screenshots
 
-Add screenshots of your application here:
+### 🏠 Home Page
 
-```markdown
+<img width="1683" height="890" alt="Home Page" src="https://github.com/user-attachments/assets/200c5000-1f39-4349-92c0-050774645f76" />
 
-<img width="1683" height="890" alt="image" src="https://github.com/user-attachments/assets/200c5000-1f39-4349-92c0-050774645f76" />
+### 📄 Resume Analysis
 
-<img width="1618" height="893" alt="image" src="https://github.com/user-attachments/assets/c7a31397-aed1-4ed0-85aa-6db6f8fe89c5" />
+<img width="1618" height="893" alt="Resume Analysis" src="https://github.com/user-attachments/assets/c7a31397-aed1-4ed0-85aa-6db6f8fe89c5" />
 
-<img width="1765" height="693" alt="image" src="https://github.com/user-attachments/assets/1e0f1b63-7d04-4d21-a82c-138808d0e6be" />
+### 🎯 Job Match Result
 
-
-```
+<img width="1765" height="693" alt="Job Match Result" src="https://github.com/user-attachments/assets/1e0f1b63-7d04-4d21-a82c-138808d0e6be" />
 
 ---
 
@@ -294,13 +285,12 @@ Add screenshots of your application here:
 
 **Shivanand Irappa Sangammanavar**
 
-Computer Science & Engineering
+Computer Science & Engineering  
 VIT Bhopal University
 
 ### Connect With Me
 
-* GitHub: (https://github.com/shivanand25bai11346)
-
+- **GitHub:** https://github.com/shivanand25bai11346
 
 ---
 
@@ -316,7 +306,7 @@ This project is developed for educational and portfolio purposes.
 
 ---
 
-### 🚀 Live Demo
+## 🚀 Live Demo
 
-**AI Resume Job Matcher:**
+**AI Resume Job Matcher:**  
 https://ai-resume-job-matcher-psi.vercel.app/
