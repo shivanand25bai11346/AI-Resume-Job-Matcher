@@ -284,9 +284,11 @@ The application can be accessed directly through the deployed URL.
 ## 👨‍💻 Author
 
 **Shivanand Irappa Sangammanavar**
-
-Computer Science & Engineering  
+25BAI11346
+SCAI
 VIT Bhopal University
+
+**Course** Programming in Java **(CSE2006)**
 
 ### Connect With Me
 
